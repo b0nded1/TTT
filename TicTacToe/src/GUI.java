@@ -5,15 +5,17 @@ import java.awt.event.ActionListener;
 
 
 public class GUI extends JFrame {
+    private Control control;
     JButton[] buttons = new JButton[9];
 
     Container cp;
 
     JPanel gamePanel;
     char playerMark = 'x';
-    static Server server = new Server();
 
-    public GUI() {
+
+    public GUI(Control control) {
+        this.control = control;
         setTitle("Tic Tac Toe");
         setSize(500, 500);
 
@@ -32,7 +34,6 @@ public class GUI extends JFrame {
     }
 
     public byte[] openGame() {
-        TicTacToe ttt = new TicTacToe();
         cp.add(gamePanel);
         initializeButtons();
         revalidate();
@@ -150,13 +151,17 @@ public class GUI extends JFrame {
         JFrame connectIP = new JFrame("Connection Screen");
         connectIP.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JTextField textField = new JTextField("IP-Adress:", 30);
+        textField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                control.connectToServer(textField.getText());
+            }
+        });
 
-        JTextArea textArea = new JTextArea();
         JFrame frameMenu = new JFrame();
         JPanel panel = new JPanel();
         frameMenu.setTitle("Connection Screen");
         panel.add(textField);
-        panel.add(textArea);
         frameMenu.add(panel, BorderLayout.CENTER);
         frameMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frameMenu.pack();
