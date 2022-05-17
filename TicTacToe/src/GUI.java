@@ -4,36 +4,49 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class GUI extends JPanel{
+public class GUI extends JFrame {
     JButton[] buttons = new JButton[9];
-  char playerMark = 'x';
-  static Server server = new Server();
+
+    Container cp;
+
+    JPanel gamePanel;
+    char playerMark = 'x';
+    static Server server = new Server();
 
     public GUI() {
-        setLayout(new GridLayout(3, 3));
-        initializeButtons();
+        setTitle("Tic Tac Toe");
+        setSize(500, 500);
+
+        cp = this.getContentPane();
+        cp.setLayout(null);
+
+        gamePanel = new JPanel();
+        gamePanel.setBounds(0, 0, 500, 500);
+        gamePanel.setLayout(new GridLayout(3, 3));
+        gamePanel.setBackground(Color.green);
+
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
 
     }
-    public static byte[] openGame(){
-        TicTacToe ttt = new TicTacToe();
 
-        JFrame window = new JFrame("Tic Tac Toe");
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.getContentPane().add(new GUI());
-        window.setBounds(500, 500, 500, 500);
-        window.setLocationRelativeTo(null);
-        window.setVisible(true);
+    public byte[] openGame() {
+        TicTacToe ttt = new TicTacToe();
+        cp.add(gamePanel);
+        initializeButtons();
+        revalidate();
 
 
         return new byte[0];
     }
-    public void initializeButtons () {
+
+    public void initializeButtons() {
         for (int i = 0; i <= 8; i++) {
             buttons[i] = new JButton();
             buttons[i].setText("-");
             buttons[i].setBackground(Color.white);
             buttons[i].addActionListener(new ActionListener() {
-
 
                 public void actionPerformed(ActionEvent e) {
                     JButton buttonClicked = (JButton) e.getSource();
@@ -54,14 +67,13 @@ public class GUI extends JPanel{
                     }
                 }
             });
-            add(buttons[i]);
+            gamePanel.add(buttons[i]);
         }
     }
 
 
-
     public void displayVictor() {
-        if (checkForWinner() == true) {
+        if (checkForWinner()) {
             if (playerMark == 'x') playerMark = 'o';
             else playerMark = 'x';
             JOptionPane pane = new JOptionPane();
@@ -76,18 +88,20 @@ public class GUI extends JPanel{
             else System.exit(0);
         }
     }
-    private void resetTheButtons () {
+
+    private void resetTheButtons() {
         for (int i = 0; i < 9; i++) {
             playerMark = 'x';
             buttons[i].setText("-");
             buttons[i].setBackground(Color.white);
         }
     }
-    public boolean checkForWinner () {
-        if (checkRows() == true || checkColumns() == true || checkDiagonals() == true) return true;
-        else return false;
+
+    public boolean checkForWinner() {
+        return checkRows() || checkColumns() || checkDiagonals();
     }
-    public boolean checkDraw () {
+
+    public boolean checkDraw() {
         boolean full = true;
         for (int i = 0; i < 9; i++) {
             if (buttons[i].getText().charAt(0) == '-') {
@@ -96,7 +110,8 @@ public class GUI extends JPanel{
         }
         return full;
     }
-    public boolean checkRows () {
+
+    public boolean checkRows() {
         int i = 0;
         for (int j = 0; j < 3; j++) {
             if (buttons[i].getText().equals(buttons[i + 1].getText()) && buttons[i].getText().equals(buttons[i + 2].getText())
@@ -107,7 +122,8 @@ public class GUI extends JPanel{
         }
         return false;
     }
-    public boolean checkColumns () {
+
+    public boolean checkColumns() {
         int i = 0;
         for (int j = 0; j < 3; j++) {
             if (buttons[i].getText().equals(buttons[i + 3].getText()) && buttons[i].getText().equals(buttons[i + 6].getText())
@@ -120,19 +136,17 @@ public class GUI extends JPanel{
 
     }
 
-    public boolean checkDiagonals () {
+    public boolean checkDiagonals() {
         if (buttons[0].getText().equals(buttons[4].getText()) && buttons[0].getText().equals(buttons[8].getText()) &&
                 buttons[0].getText().charAt(0) != '-')
             return true;
-        else if (buttons[2].getText().equals(buttons[4].getText()) && buttons[2].getText().equals(buttons[6].getText())
-                && buttons[2].getText().charAt(0) != '-')
-            return true;
-        else return false;
+        else
+            return buttons[2].getText().equals(buttons[4].getText()) && buttons[2].getText().equals(buttons[6].getText())
+                    && buttons[2].getText().charAt(0) != '-';
     }
 
 
-
-    public static void openConnectionMenu() {
+    public void openConnectionMenu() {
         JFrame connectIP = new JFrame("Connection Screen");
         connectIP.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JTextField textField = new JTextField("IP-Adress:", 30);
