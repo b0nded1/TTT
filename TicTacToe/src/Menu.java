@@ -28,6 +28,7 @@ public class Menu {
             public void actionPerformed(ActionEvent e) {
                 gui.openGame();
                 gui.openConnectionMenu();
+                frameMenu.dispose();
             }
         });
         frameMenu.add(panel, BorderLayout.CENTER);
