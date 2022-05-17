@@ -2,25 +2,44 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Server {
-    Socket server = new Socket();
 
-    public void addLenAndSendMessage(byte[] message) {
+    private ServerSocket serverSocket;
 
+    private Socket socket = new Socket();
+
+    private Control control;
+
+
+
+    public Server(Control control){
+        this.control = control;
         try {
-            byte[] len = ByteBuffer.allocate(4)
-                    .putInt(message.length)
-                    .array();
-            byte[] out = ByteBuffer.allocate(len.length + message.length)
-                    .put(len)
-                    .put(message)
-                    .array();
-
-            server.getOutputStream().write(out);
+            serverSocket = new ServerSocket();
         } catch (IOException e) {
-            System.out.println("Could not send Message to " + server.getInetAddress().getHostName());
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+    /**
+     * Mit dieser Funktion kannst du dem Server beitreten
+     */
+    public void startServer(){
+        for (int i = 0; i <2 ; i++) {
+            try {
+                socket = serverSocket.accept();
+                control.addClienthandler(new ClientHandler(socket));
+                new Thread(control.getClienthandler(i)::init).start();
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println("Beide clients sind da");
         }
     }
 
