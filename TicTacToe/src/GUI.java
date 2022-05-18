@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class GUI extends JFrame {
@@ -51,25 +53,30 @@ public class GUI extends JFrame {
             buttons[i] = new JButton();
             buttons[i].setText("-");
             buttons[i].setBackground(Color.white);
-            buttons[i].addActionListener(new ActionListener() {
 
-                public void actionPerformed(ActionEvent e) {
-                    JButton buttonClicked = (JButton) e.getSource();
 
-                    if (buttonClicked.getText().equals("-")) {
-                        buttonClicked.setText(String.valueOf(playerMark));
-                        if(playerMark=='x'){
-                            buttonClicked.setBackground(Color.cyan);
-                            playerOturn();
-                        }else{
-                            buttonClicked.setBackground(Color.orange);
-                            playerXturn();
+
+                buttons[i].addActionListener(new ActionListener() {
+
+                    public void actionPerformed(ActionEvent e) {
+                        JButton buttonClicked = (JButton) e.getSource();
+
+                        if (buttonClicked.getText().equals("-")) {
+                            buttonClicked.setText(String.valueOf(playerMark));
+                            if (playerMark == 'x') {
+                                buttonClicked.setBackground(Color.cyan);
+                                playerOturn();
+                            } else {
+                                buttonClicked.setBackground(Color.orange);
+                                playerXturn();
+                            }
+                            displayVictor();
                         }
-                        displayVictor();
                     }
-                }
-            });
-            gamePanel.add(buttons[i]);
+                });
+
+                gamePanel.add(buttons[i]);
+            }
         }
     }
     public void playerXturn(){
@@ -202,7 +209,10 @@ public class GUI extends JFrame {
                 playerMark='x';
             }
         }
-    }
+
+
+        }
+
 
 
 

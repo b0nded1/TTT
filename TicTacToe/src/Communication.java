@@ -6,6 +6,7 @@ import java.nio.charset.StandardCharsets;
 
 public abstract class Communication {
     protected Socket socket;
+    public String message;
     protected volatile boolean online;
 
     public Communication(Socket socket) {
@@ -20,11 +21,10 @@ public abstract class Communication {
     /**
      * Funktion, die es ermöglicht den Clients eine Nachricht zu senden
      *
-     * @param message String der Nachricht die gesendet werden soll
      * @throws IOException
      */
-    public void sendMessage(String message) throws IOException {
-        message = message + "\n";
+    public void sendMessage() throws IOException {
+         message = message + "\n";
         socket.getOutputStream().write(message.getBytes(StandardCharsets.UTF_8));
         System.out.println("raus: " + message);
     }
