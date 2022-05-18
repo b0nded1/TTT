@@ -42,7 +42,7 @@ public class Server {
                 System.out.println("Client connected");
                 control.addClienthandler(new ClientHandler(socket));
                 new Thread(control.getClienthandler(i)::init).start();
-
+                control.GUIOpen();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
