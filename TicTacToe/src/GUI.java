@@ -150,11 +150,12 @@ public class GUI extends JFrame {
     public void openConnectionMenu() {
         JFrame connectIP = new JFrame("Connection Screen");
         connectIP.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JTextField textField = new JTextField("IP-Adress:", 30);
+        JTextField textField = new JTextField("Ip-Adress:"  , 30);
         textField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 control.connectToServer(textField.getText());
+
             }
         });
 
@@ -168,6 +169,10 @@ public class GUI extends JFrame {
         frameMenu.setVisible(true);
 
     }
+
+public void hostServer(){
+        control.hostGame();
+}
 }
 
 

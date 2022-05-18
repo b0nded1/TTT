@@ -1,4 +1,5 @@
 import java.io.*;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.ByteBuffer;
@@ -9,7 +10,9 @@ public class Server {
 
     private ServerSocket serverSocket;
 
-    private Socket socket = new Socket();
+    private Socket socket;
+
+
 
     private Control control;
 
@@ -18,12 +21,13 @@ public class Server {
     public Server(Control control){
         this.control = control;
         try {
-            serverSocket = new ServerSocket();
+
+            serverSocket = new ServerSocket(5050);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-
 
 
     /**
@@ -32,7 +36,10 @@ public class Server {
     public void startServer(){
         for (int i = 0; i <2 ; i++) {
             try {
+
+                System.out.println("W8ing for client");
                 socket = serverSocket.accept();
+                System.out.println("Client connected");
                 control.addClienthandler(new ClientHandler(socket));
                 new Thread(control.getClienthandler(i)::init).start();
 
@@ -42,7 +49,6 @@ public class Server {
             System.out.println("Beide clients sind da");
         }
     }
-
 
     }
 

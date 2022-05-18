@@ -10,6 +10,7 @@ public class Control {
     private Menu menu;
     private Server server;
 
+
     /**
      * Das Ding hier nennt sich ein Constructor
      */
@@ -22,8 +23,10 @@ public class Control {
      * @param ip IP Adresse der beigetreten werden soll
      */
     public void connectToServer(String ip) {
+
         try {
             client = new Client(ip);
+            System.out.println("aa123");
         } catch (IOException e) {
             System.out.println("Couldn't connect to server");
         }
@@ -34,6 +37,13 @@ public class Control {
      */
     public void hostGame(){
         server = new Server(this);
+        new Thread(server::startServer).start();
+        try {
+            client=new Client("127.0.0.1");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
@@ -42,6 +52,10 @@ public class Control {
     public void start() {
         gui = new GUI(this);
         menu = new Menu(gui);
+
+    }
+    public void GUIOpen(){
+        gui.openGame();
     }
 
     public void addClienthandler(ClientHandler clientHandler) {
