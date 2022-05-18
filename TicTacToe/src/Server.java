@@ -1,10 +1,6 @@
 import java.io.*;
-import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Server {
 
@@ -12,7 +8,7 @@ public class Server {
 
     private Socket socket;
 
-
+    private GUI gui;
 
     private Control control;
 
@@ -39,8 +35,8 @@ public class Server {
 
                 System.out.println("W8ing for client");
                 socket = serverSocket.accept();
-                System.out.println("Client connected");
-                control.addClienthandler(new ClientHandler(socket));
+                System.out.println("Client connected"+ socket.getInetAddress());
+                control.addClienthandler(new ClientHandler(socket, gui));
                 new Thread(control.getClienthandler(i)::init).start();
 
             } catch (IOException e) {
