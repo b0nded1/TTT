@@ -14,7 +14,21 @@ public class Client extends Communication {
 
     @Override
     public void init() {
-        System.out.println("Socket" + socket.getInetAddress().getHostName() + "connected");
+        while(online){
+            try {
+               String message = receiveMessage();
+                System.out.println("Angekommene Nachricht " + message);
+                switch (message){
+                    case "win" -> gui.displayVictor();
+                    case "gesetzt" -> gui.initializeButtons();
+                    case "playerX" -> gui.playerXturn();
+                    case "playerO" -> gui.playerOturn();
+
+                }
+            }catch (IOException e){
+                shutdown();
+            }
+        }
 
 
     }

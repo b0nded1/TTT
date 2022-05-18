@@ -6,12 +6,14 @@ import java.awt.event.ActionListener;
 
 public class GUI extends JFrame {
     private Control control;
+    private boolean activePlayer;
     JButton[] buttons = new JButton[9];
 
     Container cp;
 
     JPanel gamePanel;
     char playerMark = 'x';
+
 
 
     public GUI(Control control) {
@@ -42,7 +44,9 @@ public class GUI extends JFrame {
         return new byte[0];
     }
 
+
     public void initializeButtons() {
+
         for (int i = 0; i <= 8; i++) {
             buttons[i] = new JButton();
             buttons[i].setText("-");
@@ -54,15 +58,12 @@ public class GUI extends JFrame {
 
                     if (buttonClicked.getText().equals("-")) {
                         buttonClicked.setText(String.valueOf(playerMark));
-                        if (playerMark == 'x') {
-                            playerMark = 'o';
+                        if(playerMark=='x'){
                             buttonClicked.setBackground(Color.cyan);
-
-
-                        } else {
-                            playerMark = 'x';
-                            buttonClicked.setBackground(Color.ORANGE);
-
+                            playerOturn();
+                        }else{
+                            buttonClicked.setBackground(Color.orange);
+                            playerXturn();
                         }
                         displayVictor();
                     }
@@ -71,7 +72,20 @@ public class GUI extends JFrame {
             gamePanel.add(buttons[i]);
         }
     }
+    public void playerXturn(){
 
+            playerMark = 'x';
+        setCurrentPlayer(true);
+        updateActivePlayer(true);
+
+    }
+
+    public void playerOturn(){
+
+        playerMark='o';
+        setCurrentPlayer(true);
+        updateActivePlayer(true);
+    }
 
     public void displayVictor() {
         if (checkForWinner()) {
@@ -90,7 +104,7 @@ public class GUI extends JFrame {
         }
     }
 
-    private void resetTheButtons() {
+    public void resetTheButtons() {
         for (int i = 0; i < 9; i++) {
             playerMark = 'x';
             buttons[i].setText("-");
@@ -150,7 +164,7 @@ public class GUI extends JFrame {
     public void openConnectionMenu() {
         JFrame connectIP = new JFrame("Connection Screen");
         connectIP.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JTextField textField = new JTextField("Ip-Adress:"  , 30);
+        JTextField textField = new JTextField("Ip-Adress:", 30);
         textField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -170,10 +184,26 @@ public class GUI extends JFrame {
 
     }
 
-public void hostServer(){
+    public void hostServer() {
         control.hostGame();
-}
-}
+    }
+
+    public void setCurrentPlayer(boolean activePlayer) {
+        System.out.println("Your turn: " + playerMark);
+        this.activePlayer = activePlayer;
+        updateActivePlayer(activePlayer);
+    }
+
+    public void updateActivePlayer(boolean activePlayer) {
+        if (playerMark == 'x') {
+            playerMark = 'o';
+        }
+            else{
+                playerMark='x';
+            }
+        }
+    }
+
 
 
 

@@ -36,7 +36,9 @@ public class Menu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 gui.openGame();
+                System.out.println("Opengame 1");
                 gui.openConnectionMenu();
+
 
 
                 frameMenu.dispose();
@@ -46,6 +48,7 @@ public class Menu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 gui.hostServer();
+                frameMenu.dispose();
             }
         });
         frameMenu.add(panel, BorderLayout.CENTER);

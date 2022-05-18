@@ -26,7 +26,7 @@ public class Control {
 
         try {
             client = new Client(ip);
-            System.out.println("aa123");
+            System.out.println("Client Connected");
         } catch (IOException e) {
             System.out.println("Couldn't connect to server");
         }
@@ -40,6 +40,7 @@ public class Control {
         new Thread(server::startServer).start();
         try {
             client=new Client("127.0.0.1");
+            gui.openGame();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -56,6 +57,7 @@ public class Control {
     }
     public void GUIOpen(){
         gui.openGame();
+        System.out.println("Open game 2");
     }
 
     public void addClienthandler(ClientHandler clientHandler) {
