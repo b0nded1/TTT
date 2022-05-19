@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0510e59e-29d3-43fa-a889-bf3130998676" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/TicTacToe/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TicTacToe/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TicTacToe/out/production/TicTacToe/Client.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TicTacToe/out/production/TicTacToe/ClientHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TicTacToe/out/production/TicTacToe/Communication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TicTacToe/out/production/TicTacToe/Control.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TicTacToe/out/production/TicTacToe/GUI$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TicTacToe/out/production/TicTacToe/GUI$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TicTacToe/out/production/TicTacToe/GUI.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TicTacToe/out/production/TicTacToe/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TicTacToe/out/production/TicTacToe/Menu$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TicTacToe/out/production/TicTacToe/Menu$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TicTacToe/out/production/TicTacToe/Menu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TicTacToe/out/production/TicTacToe/Server.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TicTacToe/out/production/TicTacToe/testMain.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TicTacToe/src/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/TicTacToe/src/ClientHandler.java" afterDir="false" />
-    </list>
+    <list default="true" id="0510e59e-29d3-43fa-a889-bf3130998676" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,11 +18,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/TicTacToe" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/Users/pedri/IdeaProjects/TicTacToe/TTT/TicTacToe",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
+  }
+}]]></component>
   <component name="RunManager">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
@@ -68,6 +59,5 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

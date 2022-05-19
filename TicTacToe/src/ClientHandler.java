@@ -20,6 +20,7 @@ private GUI gui;
                 case "win" -> gui.displayVictor();
                 case "playerX" -> gui.playerXturn();
                 case "playerO" -> gui.playerOturn();
+                case "Changeblock" -> gui.
 
             }
         }catch (IOException e){
